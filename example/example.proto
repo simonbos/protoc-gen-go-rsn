@@ -1,0 +1,28 @@
+syntax = "proto3";
+package example;
+
+import "google/api/resource.proto";
+
+option go_package = "github.com/simonbos/protoc-gen-go-rsn/example/examplepb";
+
+message LogEntry {
+    option (google.api.resource) = {
+        type: "logging.googleapis.com/LogEntry"
+        pattern: "projects/{project}/logEntries/{log_entry}"
+        pattern: "organizations/{organization}/logEntries/{log_entry}"
+        pattern: "folders/{folder}/logEntries/{log_entry}"
+        pattern: "billingAccounts/{billing_account}/logEntries/{log_entry}"
+    };
+
+    // name and so on...
+}
+
+// A representation of a book in the library.
+message Book {
+    option (google.api.resource) = {
+        type: "library.googleapis.com/Book"
+        pattern: "publishers/{publisher}/books/{book}"
+    };
+
+    // name and so on...
+}
