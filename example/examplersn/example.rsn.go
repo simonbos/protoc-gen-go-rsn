@@ -53,7 +53,7 @@ func (r LogEntryParentRsn) ResourceName() string {
 
 // IsZero reports whether r represents the zero resource name.
 func (r LogEntryParentRsn) IsZero() bool {
-	return len(r.BillingAccountId) != 0 && len(r.FolderId) != 0 && len(r.OrganizationId) != 0 && len(r.ProjectId) != 0 && len(r.Type) != 0
+	return len(r.BillingAccountId) == 0 && len(r.FolderId) == 0 && len(r.OrganizationId) == 0 && len(r.ProjectId) == 0 && len(r.Type) == 0
 }
 
 var (
@@ -116,7 +116,7 @@ func (r LogEntryRsn) ResourceName() string {
 
 // IsZero reports whether r represents the zero resource name.
 func (r LogEntryRsn) IsZero() bool {
-	return r.Parent.IsZero() && len(r.LogEntryId) != 0
+	return r.Parent.IsZero() && len(r.LogEntryId) == 0
 }
 
 var (
@@ -195,7 +195,7 @@ func (r BookParentRsn) ResourceName() string {
 
 // IsZero reports whether r represents the zero resource name.
 func (r BookParentRsn) IsZero() bool {
-	return len(r.PublisherId) != 0 && len(r.Type) != 0
+	return len(r.PublisherId) == 0 && len(r.Type) == 0
 }
 
 var (
@@ -231,7 +231,7 @@ func (r BookRsn) ResourceName() string {
 
 // IsZero reports whether r represents the zero resource name.
 func (r BookRsn) IsZero() bool {
-	return r.Parent.IsZero() && len(r.BookId) != 0
+	return r.Parent.IsZero() && len(r.BookId) == 0
 }
 
 var (

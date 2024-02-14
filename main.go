@@ -358,9 +358,9 @@ func generateResource(g *protogen.GeneratedFile, resource Resource) {
 	parentStructFields := resource.parentStructFields()
 	parentZeroChecks := make([]string, len(parentStructFields)+1)
 	for i, structField := range parentStructFields {
-		parentZeroChecks[i] = fmt.Sprintf("len(r.%s) != 0", structField)
+		parentZeroChecks[i] = fmt.Sprintf("len(r.%s) == 0", structField)
 	}
-	parentZeroChecks[len(parentStructFields)] = fmt.Sprintf("len(r.%s) != 0", typeStructField)
+	parentZeroChecks[len(parentStructFields)] = fmt.Sprintf("len(r.%s) == 0", typeStructField)
 	g.P("return ", strings.Join(parentZeroChecks, " && "))
 	g.P("}")
 	g.P()
@@ -416,7 +416,7 @@ func generateResource(g *protogen.GeneratedFile, resource Resource) {
 	resourceZeroChecks := make([]string, len(lastStructFields)+1)
 	resourceZeroChecks[0] = fmt.Sprintf("r.%s.IsZero()", parentStructField)
 	for i, structField := range lastStructFields {
-		resourceZeroChecks[i+1] = fmt.Sprintf("len(r.%s) != 0", structField)
+		resourceZeroChecks[i+1] = fmt.Sprintf("len(r.%s) == 0", structField)
 	}
 	g.P("return ", strings.Join(resourceZeroChecks, " && "))
 	g.P("}")
